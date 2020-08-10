@@ -1,14 +1,22 @@
 package com.changgou.user.controller;
+import com.alibaba.fastjson.JSON;
 import com.changgou.user.pojo.User;
 import com.changgou.user.service.UserService;
 import com.github.pagehelper.PageInfo;
 import entity.BCrypt;
+import entity.JwtUtils;
 import entity.Result;
 import entity.StatusCode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /****
  * @Author:传智播客
@@ -25,15 +33,27 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "/login")
-    public Result login(String userName,String password){
+    public Result login(String userName, String password, HttpServletResponse response){
         //查询用户信息
         User user = userService.findById(userName);
         //对比密码
         //if(password.equals(user.getPassword())){
         //BCrypt工具进行密码对比，checkpw:参数1：明文密码；参数2：密文密码
         if(BCrypt.checkpw(password,user.getPassword())){
+            //创建用户令牌信息
+            Map<String,Object> tokenMap = new HashMap<>();
+            tokenMap.put("role","USER");
+            tokenMap.put("success","SUCCESS");
+            tokenMap.put("username",userName);
+            String token = JwtUtils.createJWT(UUID.randomUUID().toString(), JSON.toJSONString(tokenMap), null);
+            //把令牌信息存入Cookie
+            Cookie cookie = new Cookie("Authorization", token);
+            cookie.setDomain("localhost");
+            cookie.setPath("/");
+            // 把令牌作为参数给用户
+            response.addCookie(cookie);
             //密码匹配，登录成功
-            return new Result(true,StatusCode.OK,"登录成功",user) ;
+            return new Result(true,StatusCode.OK,"登录成功",token) ;
         }
 
         //密码匹配失败，登录失败

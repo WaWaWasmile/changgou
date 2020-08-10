@@ -38,7 +38,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
-
         <!--fastjson-->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -59,9 +58,11 @@
             <version>2.6.1</version>
         </dependency>
 
-        <!--
-            http://localhost:9011/swagger-ui.html
-        -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
