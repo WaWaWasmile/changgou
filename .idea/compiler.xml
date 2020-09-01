@@ -9,10 +9,11 @@
         <module name="changgou-service-user" />
         <module name="changgou-service-goods-api" />
         <module name="changgou-service-user-api" />
+        <module name="changgou-user-oauth" />
         <module name="changgou-common-db" />
-        <module name="changgou-common" />
         <module name="changgou-service-file" />
         <module name="changgou_gateway_web" />
+        <module name="changgou-common" />
         <module name="changgou-service-goods" />
         <module name="changgou-eureka" />
       </profile>
@@ -30,6 +31,7 @@
       <module name="changgou-service-goods-api" target="1.8" />
       <module name="changgou-service-user" target="1.8" />
       <module name="changgou-service-user-api" target="1.8" />
+      <module name="changgou-user-oauth" target="1.8" />
       <module name="changgou-web" target="1.8" />
       <module name="changgou_gateway_web" target="1.8" />
       <module name="code-template" target="1.8" />
@@ -47,6 +49,7 @@
       <module name="changgou-service-goods-api" options="-parameters" />
       <module name="changgou-service-user" options="-parameters" />
       <module name="changgou-service-user-api" options="-parameters" />
+      <module name="changgou-user-oauth" options="-parameters" />
       <module name="changgou-web" options="-parameters" />
       <module name="changgou_gateway_web" options="-parameters" />
       <module name="code-template" options="-parameters" />

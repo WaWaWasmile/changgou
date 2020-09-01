@@ -18,12 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-/****
- * @Author:传智播客
- * @Description:
- * @Date 2019/6/14 0:18
- *****/
-
 @RestController
 @RequestMapping("/user")
 @CrossOrigin
